@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Supernatural - Discord Bots</title>
+  <link rel="icon" type="image/png" href="gp2.jpg">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Rubik', sans-serif;
+    }
+
+    body {
+      background: #0e0e0e;
+      color: #fff;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #1a1a1a;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    header h1 {
+      color: #8a2be2;
+      font-size: 1.5rem;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 1rem;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #8a2be2;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 5rem 2rem;
+      background: url("pg1.jpg") no-repeat center center/cover; 
+      color: #fff;
+      position: relative;
+      min-height: 400px; 
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6); 
+    }
+
+    .hero h2,
+    .hero p,
+    .hero .btn {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #8a2be2;
+    }
+
+    .hero p {
+      margin-bottom: 2rem;
+      font-size: 1.2rem;
+    }
+
+    .btn {
+      padding: 0.8rem 1.5rem;
+      background: #8a2be2;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn:hover {
+      background: #6a1db7;
+    }
+
+    section {
+      padding: 4rem 2rem;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    section h3 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #8a2be2;
+      font-size: 2rem;
+    }
+
+    .bots {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .bot-card {
+      background: #1a1a1a;
+      padding: 1rem;
+      border-radius: 12px;
+      text-align: center;
+      transition: transform 0.3s;
+      overflow: hidden;
+    }
+
+    .bot-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .bot-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+
+    footer {
+      background: #1a1a1a;
+      text-align: center;
+      padding: 1.5rem;
+      margin-top: 2rem;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Supernatural</h1>
+    <nav>
+      <a href="#about">درباره ما</a>
+      <a href="#bots">ربات‌ها</a>
+      <a href="#contact">تماس</a>
+      <a href="order.html">ثبت سفارش</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h2>ساخت ربات‌های دیسکورد حرفه‌ای</h2>
+    <p>کامیونیتی Supernatural بهترین مکان برای توسعه و ساخت ربات‌های اختصاصی دیسکورد است.</p>
+    <a href="https://discord.gg/YourInviteCode" target="_blank" class="btn">ورود به دیسکورد</a>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <h3>درباره ما</h3>
+    <p style="text-align:center;">
+      ما یک کامیونیتی پرشور از توسعه‌دهندگان دیسکورد هستیم که هدفمان ساخت ربات‌های خلاقانه و کاربردی برای مدیریت و سرگرمی سرورهاست.
+    </p>
+  </section>
+
+  <!-- Bots Section -->
+  <section id="bots">
+    <h3>ربات‌های ما</h3>
+    <div class="bots">
+      <div class="bot-card">
+        <img src="pg3.png" alt="Security Bot" class="bot-img">
+        <h4>security Bot</h4>
+        <p>ربات مدیریت کامل سرور با قابلیت اتوماسیون، فیلتر کلمات و رول‌دهی خودکار.</p>
+      </div>
+      <div class="bot-card">
+        <img src="pg4.jpg" alt="Music Player" class="bot-img">
+        <h4>Music Player</h4>
+        <p>ربات های مخصوص برای بخش اهنگ با کفیت و دقت بالا.</p>
+      </div>
+      <div class="bot-card">
+        <img src="pg5.png" alt="Game Plus" class="bot-img">
+        <h4>game Plus</h4>
+        <p>مینی‌گیم‌ها و سرگرمی‌های متنوع برای افزایش تعامل اعضا.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h3>تماس با ما</h3>
+    <p style="text-align:center;">
+      برای تماس مستقیم روی دکمه زیر بزنید 👇
+    </p>
+    <div style="text-align:center; margin-top:1rem;">
+      <a href="tel:+989945922254" class="btn">📞 تماس با ما</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Supernatural Community - All Rights Reserved</p>
+  </footer>
+</body>
+</html>

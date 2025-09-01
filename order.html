@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ثبت سفارش - Supernatural</title>
+  <style>
+    body {
+      font-family: 'Rubik', sans-serif;
+      background: #0e0e0e;
+      color: #fff;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      direction: rtl;
+    }
+    .container {
+      max-width: 600px;
+      margin: 3rem auto;
+      background: #1a1a1a;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #8a2be2;
+    }
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 0.8rem;
+      margin-bottom: 1rem;
+      border: none;
+      border-radius: 8px;
+      background: #2a2a2a;
+      color: #fff;
+    }
+    input:focus, textarea:focus {
+      outline: 2px solid #8a2be2;
+    }
+    button {
+      width: 100%;
+      padding: 1rem;
+      border: none;
+      border-radius: 8px;
+      background: #8a2be2;
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #6a1db7;
+    }
+    .success {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: #2a2a2a;
+      border-radius: 8px;
+      color: #4caf50;
+      display: none;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>فرم ثبت سفارش</h2>
+    <form id="orderForm">
+      <label for="name">نام شما:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="contact">راه ارتباطی (ایمیل / تلگرام / دیسکورد):</label>
+      <input type="text" id="contact" name="contact" required>
+
+      <label for="details">توضیحات سفارش:</label>
+      <textarea id="details" name="details" rows="5" required></textarea>
+
+      <button type="submit">📩 ارسال سفارش</button>
+    </form>
+
+    <div class="success" id="successMsg">
+      ✅ سفارش شما با موفقیت ارسال شد و در دیسکورد ثبت گردید!
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById("orderForm");
+    const successMsg = document.getElementById("successMsg");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const contact = document.getElementById("contact").value;
+      const details = document.getElementById("details").value;
+
+      // 🔗 لینک وبهوک دیسکورد رو اینجا بذار
+      const webhookURL = "https://discord.com/api/webhooks/1412196592856989799/4jq3xwXZo1eN7C5EgNc9IqUu2M8qTqU_x45czgDBiLvKK240XFkcw5oa4pGm1xEbfnrp";
+
+      const payload = {
+        embeds: [
+          {
+            title: "📩 سفارش جدید",
+            color: 8965321, // رنگ بنفش
+            fields: [
+              { name: "👤 نام", value: name, inline: false },
+              { name: "📞 راه ارتباطی", value: contact, inline: false },
+              { name: "📝 توضیحات سفارش", value: details, inline: false }
+            ],
+            footer: { text: "Supernatural Orders System" },
+            timestamp: new Date()
+          }
+        ]
+      };
+
+      fetch(webhookURL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      })
+      .then(res => {
+        if (res.ok) {
+          successMsg.style.display = "block";
+          form.reset();
+        } else {
+          alert("⚠️ خطا در ارسال سفارش، دوباره امتحان کنید.");
+        }
+      })
+      .catch(err => {
+        alert("❌ مشکلی پیش اومد: " + err);
+      });
+    });
+  </script>
+</body>
+</html>
