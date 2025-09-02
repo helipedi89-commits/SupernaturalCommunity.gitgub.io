@@ -178,24 +178,11 @@
       color: #aaa;
     }
   </style>
-
-  <script>
-    // چک کردن لاگین
-    if (!localStorage.getItem("loggedIn")) {
-      window.location.href = "login.html";
-    }
-
-    function logout() {
-      localStorage.removeItem("loggedIn");
-      window.location.href = "login.html";
-    }
-  </script>
 </head>
 <body>
   <!-- ===== Header ===== -->
   <header>
     <div class="header-left" id="auth-buttons">
-      <!-- اینجا بعد از لاگین تغییر می‌کنه -->
       <a href="login.html" class="btn-nav">Login</a>
       <a href="register.html" class="btn-nav">Register</a>
     </div>
@@ -264,12 +251,27 @@
   </footer>
 
   <script>
-    // تغییر دکمه‌ها بعد از لاگین
-    if (localStorage.getItem("loggedIn")) {
-      document.getElementById("auth-buttons").innerHTML = `
-        <button onclick="logout()" class="btn-nav">خروج</button>
-      `;
+    // بررسی وضعیت ورود
+    const authButtons = document.getElementById("auth-buttons");
+
+    function checkAuth() {
+      const isLoggedIn = localStorage.getItem("isLoggedIn");
+      if (isLoggedIn === "true") {
+        authButtons.innerHTML = '<button class="btn-nav" onclick="logout()">خروج</button>';
+      } else {
+        authButtons.innerHTML = `
+          <a href="login.html" class="btn-nav">Login</a>
+          <a href="register.html" class="btn-nav">Register</a>
+        `;
+      }
     }
+
+    function logout() {
+      localStorage.removeItem("isLoggedIn");
+      checkAuth();
+    }
+
+    checkAuth();
   </script>
 </body>
 </html>
