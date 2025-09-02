@@ -3,251 +3,82 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Supernatural - Discord Bots</title>
-  <link rel="icon" type="image/png" href="gp2.jpg">
+  <title>Supernatural</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap');
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Rubik', sans-serif;
-    }
-
     body {
+      margin: 0;
+      font-family: 'Rubik', sans-serif;
       background: #0e0e0e;
       color: #fff;
-      line-height: 1.6;
+      direction: rtl;
     }
-
-    /* ===== Header ===== */
     header {
       background: #1a1a1a;
       padding: 1rem 2rem;
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .header-left {
-      justify-self: start;
       display: flex;
-      gap: 0.7rem;
+      justify-content: space-between;
+      align-items: center;
     }
-
-    .header-center {
+    header h1 {
+      margin: 0 auto;
       color: #8a2be2;
-      font-size: 1.6rem;
-      font-weight: bold;
-      text-align: center;
     }
-
-    .header-right {
-      justify-self: end;
-      display: flex;
-      gap: 1rem;
-    }
-
-    .btn-nav {
-      padding: 0.5rem 1rem;
-      background: #8a2be2;
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 0.9rem;
-      text-decoration: none;
-      transition: background 0.3s;
-    }
-
-    .btn-nav:hover {
-      background: #6a1db7;
-    }
-
-    /* ===== Hero Section ===== */
-    .hero {
-      text-align: center;
-      padding: 5rem 2rem;
-      background: url("pg1.jpg") no-repeat center center/cover; 
-      color: #fff;
-      position: relative;
-      min-height: 400px; 
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .hero::before {
-      content: "";
+    nav {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.6); 
+      left: 1rem;
+      top: 1rem;
     }
-
-    .hero h2,
-    .hero p,
-    .hero .btn {
-      position: relative;
-      z-index: 1;
+    nav a {
+      margin-right: 1rem;
+      text-decoration: none;
+      color: #fff;
     }
-
-    .hero h2 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
+    nav a:hover {
       color: #8a2be2;
     }
-
-    .hero p {
-      margin-bottom: 2rem;
-      font-size: 1.2rem;
+    main {
+      text-align: center;
+      margin-top: 4rem;
     }
-
-    .btn {
-      padding: 0.8rem 1.5rem;
-      background: #8a2be2;
-      color: #fff;
+    button {
+      padding: 1rem 2rem;
       border: none;
       border-radius: 8px;
-      cursor: pointer;
+      background: #8a2be2;
+      color: #fff;
       font-size: 1rem;
-      transition: background 0.3s;
-      text-decoration: none;
-      display: inline-block;
-    }
-
-    .btn:hover {
-      background: #6a1db7;
-    }
-
-    /* ===== Sections ===== */
-    section {
-      padding: 4rem 2rem;
-      max-width: 1100px;
-      margin: auto;
-    }
-
-    section h3 {
-      text-align: center;
-      margin-bottom: 2rem;
-      color: #8a2be2;
-      font-size: 2rem;
-    }
-
-    /* ===== Bots Section ===== */
-    .bots {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .bot-card {
-      background: #1a1a1a;
-      padding: 1rem;
-      border-radius: 12px;
-      text-align: center;
-      transition: transform 0.3s;
-      overflow: hidden;
-    }
-
-    .bot-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .bot-img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      border-radius: 10px;
-      margin-bottom: 1rem;
-    }
-
-    /* ===== Footer ===== */
-    footer {
-      background: #1a1a1a;
-      text-align: center;
-      padding: 1.5rem;
+      cursor: pointer;
       margin-top: 2rem;
-      color: #aaa;
+    }
+    button:hover {
+      background: #6a1db7;
     }
   </style>
 </head>
 <body>
-  <!-- ===== Header ===== -->
   <header>
-    <div class="header-left">
-      <a href="login.html" class="btn-nav">Login</a>
-      <a href="register.html" class="btn-nav">Register</a>
-    </div>
-
-    <h1 class="header-center">Supernatural</h1>
-
-    <nav class="header-right">
-      <a href="#about" class="btn-nav">درباره ما</a>
-      <a href="#bots" class="btn-nav">ربات‌ها</a>
-      <a href="#contact" class="btn-nav">تماس</a>
-      <a href="order.html" class="btn-nav">سفارش های ویژه</a>
+    <h1>Supernatural</h1>
+    <nav>
+      <a href="login.html">ورود</a>
+      <a href="register.html">ثبت‌نام</a>
     </nav>
   </header>
 
-  <!-- ===== Hero Section ===== -->
-  <section class="hero">
-    <h2>ساخت ربات‌های دیسکورد حرفه‌ای</h2>
-    <p>کامیونیتی Supernatural بهترین مکان برای توسعه و ساخت ربات‌های اختصاصی دیسکورد است.</p>
-    <a href="https://discord.gg/YourInviteCode" target="_blank" class="btn">ورود به دیسکورد</a>
-  </section>
+  <main>
+    <h2>به سایت Supernatural خوش آمدید ✨</h2>
+    <p>برای ثبت سفارش ابتدا باید وارد شوید یا ثبت‌نام کنید.</p>
+    <button onclick="goToOrder()">ثبت سفارش</button>
+  </main>
 
-  <!-- ===== About Section ===== -->
-  <section id="about">
-    <h3>درباره ما</h3>
-    <p style="text-align:center;">
-      ما یک کامیونیتی پرشور از توسعه‌دهندگان دیسکورد هستیم که هدفمان ساخت ربات‌های خلاقانه و کاربردی برای مدیریت و سرگرمی سرورهاست.
-    </p>
-  </section>
-
-  <!-- ===== Bots Section ===== -->
-  <section id="bots">
-    <h3>ربات‌های ما</h3>
-    <div class="bots">
-      <div class="bot-card">
-        <img src="pg3.png" alt="Security Bot" class="bot-img">
-        <h4>security Bot</h4>
-        <p>ربات مدیریت کامل سرور با قابلیت اتوماسیون، فیلتر کلمات و رول‌دهی خودکار.</p>
-      </div>
-      <div class="bot-card">
-        <img src="pg4.jpg" alt="Music Player" class="bot-img">
-        <h4>Music Player</h4>
-        <p>ربات های مخصوص برای پخش اهنگ با کفیت و دقت بالا.</p>
-      </div>
-      <div class="bot-card">
-        <img src="pg5.png" alt="Game Plus" class="bot-img">
-        <h4>game Plus</h4>
-        <p>مینی‌گیم‌ها و سرگرمی‌های متنوع برای افزایش تعامل اعضا.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Contact Section ===== -->
-  <section id="contact">
-    <h3>تماس با ما</h3>
-    <p style="text-align:center;">
-      برای تماس مستقیم روی دکمه زیر بزنید 👇
-    </p>
-    <div style="text-align:center; margin-top:1rem;">
-      <a href="tel:+989945922254" class="btn">📞 تماس با ما</a>
-    </div>
-  </section>
-
-  <!-- ===== Footer ===== -->
-  <footer>
-    <p>© 2025 Supernatural Community - All Rights Reserved</p>
-  </footer>
+  <script>
+    function goToOrder() {
+      if (localStorage.getItem("loggedIn") === "true") {
+        window.location.href = "order.html";
+      } else {
+        alert("⚠️ لطفا ابتدا وارد شوید یا ثبت‌نام کنید.");
+        window.location.href = "login.html";
+      }
+    }
+  </script>
 </body>
 </html>
