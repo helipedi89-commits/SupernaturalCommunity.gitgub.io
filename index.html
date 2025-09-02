@@ -169,6 +169,21 @@
       margin-bottom: 1rem;
     }
 
+    .add-btn {
+      margin-top: 10px;
+      background: #8a2be2;
+      color: #fff;
+      border: none;
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .add-btn:hover {
+      background: #6a1db7;
+    }
+
     /* ===== Footer ===== */
     footer {
       background: #1a1a1a;
@@ -194,6 +209,7 @@
       <a href="#bots" class="btn-nav">ربات‌ها</a>
       <a href="#contact" class="btn-nav">تماس</a>
       <a href="order.html" class="btn-nav">سفارش های ویژه</a>
+      <a href="cart.html" class="btn-nav">🛒 سبد خرید</a>
     </nav>
   </header>
 
@@ -213,26 +229,33 @@
   </section>
 
   <!-- ===== Bots Section ===== -->
-  <section id="bots">
-    <h3>ربات‌های ما</h3>
-    <div class="bots">
-      <div class="bot-card">
-        <img src="pg3.png" alt="Security Bot" class="bot-img">
-        <h4>security Bot</h4>
-        <p>ربات مدیریت کامل سرور با قابلیت اتوماسیون، فیلتر کلمات و رول‌دهی خودکار.</p>
-      </div>
-      <div class="bot-card">
-        <img src="pg4.jpg" alt="Music Player" class="bot-img">
-        <h4>Music Player</h4>
-        <p>ربات های مخصوص برای پخش اهنگ با کفیت و دقت بالا.</p>
-      </div>
-      <div class="bot-card">
-        <img src="pg5.png" alt="Game Plus" class="bot-img">
-        <h4>game Plus</h4>
-        <p>مینی‌گیم‌ها و سرگرمی‌های متنوع برای افزایش تعامل اعضا.</p>
-      </div>
+<section id="bots">
+  <h3>ربات‌های ما</h3>
+  <div class="bots">
+    <div class="bot-card">
+      <img src="pg3.png" alt="Security Bot" class="bot-img">
+      <h4>security Bot</h4>
+      <p>ربات مدیریت کامل سرور با قابلیت اتوماسیون، فیلتر کلمات و رول‌دهی خودکار.</p>
+      <p style="color:#8a2be2; font-weight:bold;">قیمت: ۴۰۰ تومان</p>
+      <button class="btn" onclick="addToCart('security Bot')">افزودن به سبد خرید</button>
     </div>
-  </section>
+    <div class="bot-card">
+      <img src="pg4.jpg" alt="Music Player" class="bot-img">
+      <h4>Music Player</h4>
+      <p>ربات های مخصوص برای پخش اهنگ با کفیت و دقت بالا.</p>
+      <p style="color:#8a2be2; font-weight:bold;">قیمت: ۴۰۰ تومان</p>
+      <button class="btn" onclick="addToCart('Music Player')">افزودن به سبد خرید</button>
+    </div>
+    <div class="bot-card">
+      <img src="pg5.png" alt="Game Plus" class="bot-img">
+      <h4>game Plus</h4>
+      <p>مینی‌گیم‌ها و سرگرمی‌های متنوع برای افزایش تعامل اعضا.</p>
+      <p style="color:#8a2be2; font-weight:bold;">قیمت: ۴۰۰ تومان</p>
+      <button class="btn" onclick="addToCart('game Plus')">افزودن به سبد خرید</button>
+    </div>
+  </div>
+</section>
+
 
   <!-- ===== Contact Section ===== -->
   <section id="contact">
@@ -272,6 +295,14 @@
     }
 
     checkAuth();
+
+    // افزودن به سبد خرید
+    function addToCart(name, price) {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart.push({ name, price });
+      localStorage.setItem("cart", JSON.stringify(cart));
+      alert(name + " به سبد خرید اضافه شد ✅");
+    }
   </script>
 </body>
 </html>
