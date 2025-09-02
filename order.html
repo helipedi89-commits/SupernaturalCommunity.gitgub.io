@@ -91,6 +91,12 @@
   </div>
 
   <script>
+    // 🚨 چک لاگین بودن
+    if (localStorage.getItem("loggedIn") !== "true") {
+      alert("⚠️ برای ثبت سفارش باید ابتدا وارد حساب شوید یا ثبت‌نام کنید.");
+      window.location.href = "login.html"; // کاربر رو می‌فرسته به صفحه لاگین
+    }
+
     const form = document.getElementById("orderForm");
     const successMsg = document.getElementById("successMsg");
 
@@ -102,7 +108,7 @@
       const details = document.getElementById("details").value;
 
       // 🔗 لینک وبهوک دیسکورد رو اینجا بذار
-      const webhookURL = "https://discord.com/api/webhooks/1412196592856989799/4jq3xwXZo1eN7C5EgNc9IqUu2M8qTqU_x45czgDBiLvKK240XFkcw5oa4pGm1xEbfnrp";
+      const webhookURL = "https://discord.com/api/webhooks/1412388207143686214/nL7ZUkfYZ6YrDnjv42cvoTVpG1qddSAwsDQZBZcWPIzYqbkwialBozd5M1ZAmPmVrdA6";
 
       const payload = {
         embeds: [
