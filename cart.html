@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>سبد خرید</title>
+  <style>
+    body {
+      font-family: 'Rubik', sans-serif;
+      background: #0e0e0e;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      direction: rtl;
+    }
+    .container {
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background: #1a1a1a;
+      border-radius: 12px;
+    }
+    h2 {
+      text-align: center;
+      color: #8a2be2;
+    }
+    .item {
+      display: flex;
+      justify-content: space-between;
+      background: #2a2a2a;
+      margin: 0.5rem 0;
+      padding: 0.7rem;
+      border-radius: 8px;
+    }
+    button {
+      margin-top: 1rem;
+      width: 100%;
+      padding: 0.8rem;
+      background: #8a2be2;
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #6a1db7;
+    }
+    .empty {
+      text-align: center;
+      margin-top: 1rem;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>🛒 سبد خرید</h2>
+    <div id="cartItems"></div>
+    <h3 id="total"></h3>
+    <button onclick="checkout()">📩 ثبت سفارش</button>
+  </div>
+
+  <script>
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const cartItemsDiv = document.getElementById("cartItems");
+    const totalDiv = document.getElementById("total");
+
+    function renderCart() {
+      cartItemsDiv.innerHTML = "";
+      let total = 0;
+      if (cart.length === 0) {
+        cartItemsDiv.innerHTML = "<p class='empty'>سبد خرید خالی است</p>";
+        totalDiv.textContent = "";
+        return;
+      }
+      cart.forEach((item, index) => {
+        total += item.price;
+        cartItemsDiv.innerHTML += `
+          <div class="item">
+            <span>${item.name}</span>
+            <span>${item.price.toLocaleString()} تومان</span>
+          </div>
+        `;
+      });
+      totalDiv.textContent = "💰 مجموع: " + total.toLocaleString() + " تومان";
+    }
+
+    renderCart();
+
+    function checkout() {
+      if (cart.length === 0) {
+        alert("❌ سبد خرید خالی است!");
+        return;
+      }
+
+      const webhookURL = "https://discord.com/api/webhooks/1412388207143686214/nL7ZUkfYZ6YrDnjv42cvoTVpG1qddSAwsDQZBZcWPIzYqbkwialBozd5M1ZAmPmVrdA6";
+      
+      let itemsList = cart.map(item => `- ${item.name}: ${item.price.toLocaleString()} تومان`).join("\n");
+
+      const payload = {
+        content: `🛒 **سفارش جدید**\n${itemsList}`
+      };
+
+      fetch(webhookURL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      })
+      .then(res => {
+        if (res.ok) {
+          alert("✅ سفارش شما با موفقیت ثبت شد!");
+          localStorage.removeItem("cart");
+          window.location.href = "products.html";
+        } else {
+          alert("⚠️ خطا در ثبت سفارش!");
+        }
+      })
+      .catch(err => {
+        alert("❌ مشکلی پیش اومد: " + err);
+      });
+    }
+  </script>
+</body>
+</html>
