@@ -6,26 +6,16 @@
   <title>Supernatural - ربات‌های دیسکورد</title>
   <link rel="icon" type="image/png" href="gp2.jpg">
 
-  <!-- ✅ متا دیتا -->
-  <meta name="description" content="خرید ربات‌های دیسکورد حرفه‌ای با قیمت مناسب | Supernatural">
-  <meta name="keywords" content="ربات دیسکورد, خرید ربات, discord bot, supernatural bots">
-  <meta name="author" content="Supernatural Team">
-
-  <!-- ✅ Open Graph -->
-  <meta property="og:title" content="Supernatural - ربات‌های دیسکورد">
-  <meta property="og:description" content="بهترین ربات‌های مدیریت، موزیک و گیم برای دیسکورد.">
-  <meta property="og:image" content="pg3.png">
-  <meta property="og:url" content="https://example.com">
+  <!-- فونت فارسی -->
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap');
-
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Rubik', sans-serif; }
-    body { background: #0e0e0e; color: #fff; line-height: 1.6; direction: rtl; }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Vazirmatn', sans-serif; }
+    body { background: #0e0e0e; color: #fff; line-height: 1.7; direction: rtl; }
 
     /* ===== Header ===== */
     header {
-      background: #1a1a1a;
+      background: rgba(26,26,26,0.85);
       padding: 1rem 2rem;
       display: flex;
       justify-content: space-between;
@@ -33,25 +23,33 @@
       position: sticky;
       top: 0;
       z-index: 100;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      transition: all 0.3s;
     }
-    .header-center { color: #8a2be2; font-size: 1.8rem; font-weight: bold; }
+    .header-center { 
+      background: linear-gradient(45deg,#8a2be2,#00d4ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 2rem; 
+      font-weight: bold; 
+    }
     .header-left, .header-right { display: flex; gap: 1rem; align-items: center; }
-
     .btn-nav {
-      padding: 0.5rem 1rem;
-      background: #8a2be2;
+      padding: 0.6rem 1.2rem;
+      background: linear-gradient(135deg,#8a2be2,#00d4ff);
       color: #fff;
       border: none;
-      border-radius: 6px;
+      border-radius: 10px;
       cursor: pointer;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       text-decoration: none;
-      transition: background 0.3s;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
-    .btn-nav:hover { background: #6a1db7; }
+    .btn-nav:hover { transform: translateY(-3px); box-shadow: 0 0 15px rgba(138,43,226,0.6); }
 
     /* ===== Cart Icon ===== */
-    .cart-icon { position: relative; cursor: pointer; }
+    .cart-icon { position: relative; cursor: pointer; font-size: 1.2rem; }
     .cart-count {
       position: absolute;
       top: -8px;
@@ -81,37 +79,52 @@
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: rgba(0,0,0,0.6);
+      background: rgba(0,0,0,0.55);
     }
     .hero h2, .hero p, .hero .btn { position: relative; z-index: 1; }
-    .hero h2 { font-size: 2.6rem; margin-bottom: 1rem; color: #8a2be2; }
+    .hero h2 { 
+      font-size: 3rem; 
+      margin-bottom: 1rem; 
+      background: linear-gradient(90deg,#8a2be2,#00d4ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 20px rgba(138,43,226,0.8);
+      animation: glow 2s infinite alternate;
+    }
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #8a2be2, 0 0 20px #00d4ff; }
+      to   { text-shadow: 0 0 20px #00d4ff, 0 0 40px #8a2be2; }
+    }
     .hero p { margin-bottom: 2rem; font-size: 1.2rem; max-width: 700px; }
     .btn {
-      padding: 0.8rem 1.5rem;
-      background: #8a2be2;
+      padding: 0.9rem 1.6rem;
+      background: linear-gradient(135deg,#8a2be2,#00d4ff);
       border: none;
-      border-radius: 8px;
+      border-radius: 12px;
       cursor: pointer;
       color: #fff;
       font-size: 1rem;
-      transition: background 0.3s;
+      font-weight: bold;
+      transition: transform 0.3s, box-shadow 0.3s;
       text-decoration: none;
       display: inline-block;
     }
-    .btn:hover { background: #6a1db7; }
+    .btn:hover { transform: scale(1.07); box-shadow: 0 0 20px rgba(0,212,255,0.7); }
 
     /* ===== Sections ===== */
-    section { padding: 4rem 2rem; max-width: 1100px; margin: auto; }
-    section h3 { text-align: center; margin-bottom: 2rem; color: #8a2be2; font-size: 2rem; }
+    section { padding: 4rem 2rem; max-width: 1100px; margin: auto; opacity: 0; transform: translateY(40px); transition: all 0.9s; }
+    section.visible { opacity: 1; transform: translateY(0); }
+    section h3 { text-align: center; margin-bottom: 2rem; background: linear-gradient(90deg,#8a2be2,#00d4ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 2.2rem; }
 
     /* ===== About Section ===== */
     #about { text-align: center; }
     .about-img {
       width: 100%;
-      max-width: 700px;
-      border-radius: 12px;
+      max-width: 400px;
+      border-radius: 15px;
       margin: 2rem auto;
       display: block;
+      box-shadow: 0 0 25px rgba(138,43,226,0.7);
     }
 
     /* ===== Bots Section ===== */
@@ -122,39 +135,113 @@
     }
     .bot-card {
       background: #1a1a1a;
-      padding: 1rem;
-      border-radius: 12px;
+      padding: 1.2rem;
+      border-radius: 15px;
       text-align: center;
-      transition: transform 0.3s, box-shadow 0.3s;
+      transition: transform 0.4s, box-shadow 0.4s;
       overflow: hidden;
+      border: 1px solid rgba(138,43,226,0.3);
     }
-    .bot-card:hover { transform: translateY(-5px); box-shadow: 0 0 15px rgba(138,43,226,0.5); }
+    .bot-card:hover { transform: translateY(-8px) scale(1.03); box-shadow: 0 0 25px rgba(0,212,255,0.5); }
     .bot-img {
       width: 100%; height: 180px;
       object-fit: cover;
-      border-radius: 10px;
+      border-radius: 12px;
       margin-bottom: 1rem;
     }
-    .bot-card h4 { margin: 0.5rem 0; }
+    .bot-card h4 { margin: 0.5rem 0; font-weight: bold; }
     .bot-card p { font-size: 0.9rem; color: #ccc; }
-    .price { margin: 0.5rem 0; color: #8a2be2; font-weight: bold; font-size: 1.1rem; }
+    .price { margin: 0.5rem 0; color: #00d4ff; font-weight: bold; font-size: 1.2rem; }
 
     /* ===== Contact Section ===== */
     #contact { text-align: center; }
     .contact-img {
       width: 100%;
       max-width: 600px;
-      border-radius: 12px;
+      border-radius: 15px;
       margin: 1.5rem auto;
       display: block;
+      box-shadow: 0 0 20px rgba(0,212,255,0.6);
     }
 
     /* ===== Footer ===== */
-    footer { background: #1a1a1a; text-align: center; padding: 1.5rem; margin-top: 2rem; color: #aaa; }
+    footer { background: #1a1a1a; text-align: center; padding: 1.5rem; margin-top: 2rem; color: #aaa; border-top: 1px solid rgba(255,255,255,0.1); }
+
+    /* ===== Report Floating Button ===== */
+    .report-btn {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg,#8a2be2,#00d4ff);
+      color: #fff;
+      font-size: 1.5rem;
+      font-weight: bold;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+      transition: transform 0.3s;
+      z-index: 200;
+      animation: pulse 2s infinite;
+    }
+    .report-btn:hover { transform: scale(1.15); }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(0,212,255,0.6); }
+      70% { box-shadow: 0 0 0 20px rgba(0,212,255,0); }
+      100% { box-shadow: 0 0 0 0 rgba(0,212,255,0); }
+    }
+
+    /* ===== Popup Style ===== */
+    .report-popup {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      justify-content: center; align-items: center;
+      z-index: 300;
+    }
+    .report-content {
+      background: #1a1a1a;
+      padding: 2rem;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 420px;
+      color: #fff;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.6);
+      border: 1px solid rgba(0,212,255,0.3);
+      animation: zoomIn 0.4s ease;
+    }
+    @keyframes zoomIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .report-content h3 { margin-bottom: 1rem; background: linear-gradient(90deg,#8a2be2,#00d4ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align: center; }
+    .report-content label { display: block; margin-top: 1rem; }
+    .report-content input, .report-content textarea {
+      width: 100%; padding: 0.8rem; margin-top: 0.3rem;
+      border-radius: 10px; border: none; outline: none;
+      background: #2a2a2a; color: #fff;
+    }
+    .report-content button {
+      margin-top: 1rem;
+      padding: 0.9rem; width: 100%;
+      border: none; border-radius: 10px;
+      background: linear-gradient(135deg,#8a2be2,#00d4ff);
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer; transition: transform 0.3s;
+    }
+    .report-content button:hover { transform: scale(1.05); }
+    .close-btn { background: #444 !important; }
+    .close-btn:hover { background: #222 !important; }
 
     /* ✅ ریسپانسیو موبایل */
     @media (max-width: 600px) {
-      .hero h2 { font-size: 1.9rem; }
+      .hero h2 { font-size: 2.2rem; }
       .hero p { font-size: 1rem; }
       header { flex-direction: column; gap: 0.5rem; }
       .header-left, .header-right { justify-content: center; }
@@ -168,9 +255,7 @@
       <a href="login.html" class="btn-nav">Login</a>
       <a href="register.html" class="btn-nav">Register</a>
     </div>
-
     <h1 class="header-center">Supernatural</h1>
-
     <nav class="header-right">
       <a href="#about" class="btn-nav">درباره ما</a>
       <a href="#bots" class="btn-nav">ربات‌ها</a>
@@ -192,20 +277,9 @@
   <!-- ===== About Section ===== -->
   <section id="about">
     <h3>درباره ما</h3>
-    <p>
-      ما یک کامیونیتی پرشور از توسعه‌دهندگان دیسکورد هستیم که هدفمان ساخت ربات‌های خلاقانه و کاربردی برای مدیریت و سرگرمی سرورهاست.
-    </p>
-    <!-- ✅ جای عکس معرفی تیم -->
-    <img src="Server_Icon.png" alt="لوگو" style="
-  max-width: 300px; 
-  width: 100%; 
-  height: auto; 
-  display: block; 
-  margin: 2rem auto; 
-  border-radius: 12px; 
-  box-shadow: 0 0 20px rgba(138, 43, 226, 0.6);
-">
-
+    <p>ما یک کامیونیتی پرشور از توسعه‌دهندگان دیسکورد هستیم که هدفمان ساخت ربات‌های خلاقانه و کاربردی برای مدیریت و سرگرمی سرورهاست.</p>
+    <img src="Server_Icon.png" alt="لوگو" class="about-img">
+  </section>
 
   <!-- ===== Bots Section ===== -->
   <section id="bots">
@@ -215,31 +289,49 @@
         <img src="pg3.png" alt="Security Bot" class="bot-img">
         <h4>Security Bot</h4>
         <p>ربات مدیریت کامل سرور با قابلیت اتوماسیون، فیلتر کلمات و رول‌دهی خودکار.</p>
-        <p class="price">400 تومان</p>
-        <button class="btn" onclick="addToCart('Security Bot', 400)">➕ افزودن به سبد</button>
+        <p class="price">400,000 تومان</p>
+        <button class="btn" onclick="addToCart('Security Bot', 400000)">➕ افزودن به سبد</button>
       </div>
       <div class="bot-card">
         <img src="pg4.jpg" alt="Music Player" class="bot-img">
         <h4>Music Player</h4>
         <p>ربات مخصوص برای پخش آهنگ با کیفیت بالا.</p>
-        <p class="price">400 تومان</p>
-        <button class="btn" onclick="addToCart('Music Player', 400)">➕ افزودن به سبد</button>
+        <p class="price">400,000 تومان</p>
+        <button class="btn" onclick="addToCart('Music Player', 400000)">➕ افزودن به سبد</button>
       </div>
       <div class="bot-card">
         <img src="pg5.png" alt="Game Plus" class="bot-img">
         <h4>Game Plus</h4>
         <p>مینی‌گیم‌ها و سرگرمی‌های متنوع برای افزایش تعامل اعضا.</p>
-        <p class="price">400 تومان</p>
-        <button class="btn" onclick="addToCart('Game Plus', 400)">➕ افزودن به سبد</button>
+        <p class="price">400,000 تومان</p>
+        <button class="btn" onclick="addToCart('Game Plus', 400000)">➕ افزودن به سبد</button>
       </div>
     </div>
   </section>
+
+  <!-- ===== Other Services Title ===== -->
+  <<div style="text-align:center; margin:3rem 0;">
+  <a href="bots.html" style="
+    font-size: 1.4rem; 
+    text-decoration: none;
+    background: linear-gradient(135deg,#8a2be2,#00d4ff);
+    color: #fff; 
+    padding: 0.8rem 2rem;
+    border-radius: 12px;
+    font-weight: bold;
+    display: inline-block;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 0 15px rgba(0,212,255,0.6);
+  ">
+    🤖 ربات‌ها و خدمات دیگر
+  </a>
+</div>
+
 
   <!-- ===== Contact Section ===== -->
   <section id="contact">
     <h3>تماس با ما</h3>
     <p>برای تماس مستقیم روی دکمه زیر بزنید 👇</p>
-    <!-- ✅ جای عکس تماس -->
     <img src="contact.jpg" alt="Contact" class="contact-img">
     <div style="margin-top:1rem;">
       <a href="tel:+989945922254" class="btn">📞 تماس با ما</a>
@@ -251,167 +343,67 @@
     <p>© 2025 Supernatural Community - All Rights Reserved</p>
   </footer>
 
-  <script>
-    // بررسی وضعیت ورود
-    const authButtons = document.getElementById("auth-buttons");
-    function checkAuth() {
-      const isLoggedIn = localStorage.getItem("isLoggedIn");
-      if (isLoggedIn === "true") {
-        authButtons.innerHTML = '<button class="btn-nav" onclick="logout()">خروج</button>';
-      } else {
-        authButtons.innerHTML = `
-          <a href="login.html" class="btn-nav">Login</a>
-          <a href="register.html" class="btn-nav">Register</a>
-        `;
-      }
-    }
-    function logout() {
-      localStorage.removeItem("isLoggedIn");
-      checkAuth();
-    }
-    checkAuth();
-
-    // مدیریت سبد خرید
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const cartCount = document.getElementById("cartCount");
-
-    function updateCartCount() {
-      cartCount.textContent = cart.length;
-    }
-
-    function addToCart(name, price) {
-      cart.push({ name, price });
-      localStorage.setItem("cart", JSON.stringify(cart));
-      updateCartCount();
-      alert("✅ " + name + " به سبد خرید اضافه شد!");
-    }
-
-    updateCartCount();
-  </script>
   <!-- ===== Report Floating Button ===== -->
-<div class="report-btn" onclick="openReport()">📢</div>
+  <div class="report-btn" onclick="openReport()">📢</div>
 
-<!-- ===== Report Form Popup ===== -->
-<div class="report-popup" id="reportPopup">
-  <div class="report-content">
-    <h3>📢 ارسال گزارش</h3>
-    <label>نام و نام خانوادگی:</label>
-    <input type="text" id="reportName" placeholder="مثال: علی رضایی">
-
-    <label>شماره موبایل:</label>
-    <input type="tel" id="reportPhone" placeholder="0912xxxxxxx">
-
-    <label>پیام شما:</label>
-    <textarea id="reportMessage" rows="4" placeholder="پیام خود را اینجا وارد کنید..."></textarea>
-
-    <button onclick="sendReport()">✅ ارسال</button>
-    <button class="close-btn" onclick="closeReport()">❌ بستن</button>
+  <!-- ===== Report Form Popup ===== -->
+  <div class="report-popup" id="reportPopup">
+    <div class="report-content">
+      <h3>📢 ارسال گزارش</h3>
+      <label>نام و نام خانوادگی:</label>
+      <input type="text" id="reportName" placeholder="مثال: علی رضایی">
+      <label>شماره موبایل:</label>
+      <input type="tel" id="reportPhone" placeholder="0912xxxxxxx">
+      <label>پیام شما:</label>
+      <textarea id="reportMessage" rows="4" placeholder="پیام خود را اینجا وارد کنید..."></textarea>
+      <button onclick="sendReport()">✅ ارسال</button>
+      <button class="close-btn" onclick="closeReport()">❌ بستن</button>
+    </div>
   </div>
-</div>
 
-<style>
-  /* ===== Report Floating Button ===== */
-  .report-btn {
-    position: fixed;
-    bottom: 80px; /* کمی بالاتر از سبد خرید */
-    right: 20px;
-    width: 55px;
-    height: 55px;
-    background: #8a2be2;
-    color: #fff;
-    font-size: 1.4rem;
-    font-weight: bold;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    transition: background 0.3s, transform 0.2s;
-    z-index: 200;
-  }
-  .report-btn:hover {
-    background: #6a1db7;
-    transform: scale(1.1);
-  }
+  <script>
+    // ✅ Scroll Animation
+    const sections = document.querySelectorAll("section");
+    window.addEventListener("scroll", () => {
+      sections.forEach(sec => {
+        const rect = sec.getBoundingClientRect();
+        if(rect.top < window.innerHeight - 100) sec.classList.add("visible");
+      });
+    });
 
-  /* ===== Popup Style ===== */
-  .report-popup {
-    display: none;
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.7);
-    justify-content: center; align-items: center;
-    z-index: 300;
-  }
-  .report-content {
-    background: #1a1a1a;
-    padding: 2rem;
-    border-radius: 15px;
-    width: 90%;
-    max-width: 420px;
-    color: #fff;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
-  }
-  .report-content h3 { margin-bottom: 1rem; color: #8a2be2; text-align: center; }
-  .report-content label { display: block; margin-top: 1rem; }
-  .report-content input, .report-content textarea {
-    width: 100%; padding: 0.7rem; margin-top: 0.3rem;
-    border-radius: 8px; border: none; outline: none;
-    background: #2a2a2a; color: #fff;
-  }
-  .report-content button {
-    margin-top: 1rem;
-    padding: 0.8rem; width: 100%;
-    border: none; border-radius: 8px;
-    background: #8a2be2; color: #fff;
-    cursor: pointer; transition: background 0.3s;
-  }
-  .report-content button:hover { background: #6a1db7; }
-  .close-btn { background: #444 !important; margin-top: 0.5rem; }
-  .close-btn:hover { background: #222 !important; }
-</style>
+    // ✅ Auth Simulation
+    let loggedIn = false;
+    function checkLogin() {
+      const authDiv = document.getElementById("auth-buttons");
+      if(loggedIn) {
+        authDiv.innerHTML = '<button class="btn-nav" onclick="logout()">خروج</button>';
+      } else {
+        authDiv.innerHTML = '<a href="login.html" class="btn-nav">Login</a><a href="register.html" class="btn-nav">Register</a>';
+      }
+    }
+    function logout() { loggedIn = false; checkLogin(); alert("خارج شدید!"); }
+    checkLogin();
 
-<script>
-  function openReport() {
-    document.getElementById("reportPopup").style.display = "flex";
-  }
-  function closeReport() {
-    document.getElementById("reportPopup").style.display = "none";
-  }
-  function sendReport() {
-    const name = document.getElementById("reportName").value.trim();
-    const phone = document.getElementById("reportPhone").value.trim();
-    const message = document.getElementById("reportMessage").value.trim();
-
-    if (!name || !phone || !message) {
-      alert("⚠️ لطفاً همه فیلدها را پر کنید.");
-      return;
+    // ✅ Cart System
+    let cart = [];
+    function addToCart(name, price) {
+      if(!loggedIn) { alert("برای افزودن به سبد خرید باید وارد شوید!"); return; }
+      cart.push({name,price});
+      document.getElementById("cartCount").textContent = cart.length;
+      alert(`${name} به سبد خرید اضافه شد ✅`);
     }
 
-    // ✅ ارسال به وبهوک دیسکورد یا سرور
-    const webhookURL = "https://discord.com/api/webhooks/....";
-
-    const payload = {
-      content: `📢 **گزارش جدید**\n👤 نام: ${name}\n📱 موبایل: ${phone}\n📝 پیام: ${message}`
-    };
-
-    fetch(webhookURL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    }).then(res => {
-      if (res.ok) {
-        alert("✅ گزارش شما با موفقیت ارسال شد.");
-        closeReport();
-      } else {
-        alert("⚠️ خطا در ارسال گزارش.");
-      }
-    }).catch(err => {
-      alert("❌ مشکلی پیش آمد: " + err);
-    });
-  }
-</script>
-
+    // ✅ Report Popup
+    function openReport() { document.getElementById("reportPopup").style.display = "flex"; }
+    function closeReport() { document.getElementById("reportPopup").style.display = "none"; }
+    function sendReport() {
+      const name = document.getElementById("reportName").value;
+      const phone = document.getElementById("reportPhone").value;
+      const msg = document.getElementById("reportMessage").value;
+      if(!name || !phone || !msg) { alert("لطفاً همه فیلدها را پر کنید!"); return; }
+      alert("✅ گزارش شما ارسال شد. با شما تماس خواهیم گرفت.");
+      closeReport();
+    }
+  </script>
 </body>
 </html>
