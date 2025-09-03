@@ -1,0 +1,35 @@
+/* نوار پایین برای موبایل */
+.mobile-nav {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  header nav { display: none; } /* منوی بالایی مخفی بشه */
+  .mobile-nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #1a1a1a;
+    padding: 0.6rem 0;
+    box-shadow: 0 -3px 10px rgba(0,0,0,0.5);
+    z-index: 999;
+  }
+  .mobile-nav a {
+    flex: 1;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #fff;
+    text-decoration: none;
+    padding: 0.5rem;
+    border-radius: 8px;
+    background: linear-gradient(135deg,#8a2be2,#00d4ff);
+    margin: 0 5px;
+  }
+  .mobile-nav a:hover {
+    opacity: 0.9;
+  }
+}
