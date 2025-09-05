@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>داشبورد</title>
+  <style>
+    body { font-family: 'Vazirmatn', sans-serif; background: #0e0e0e; color: #fff; text-align: center; padding: 3rem; }
+    .btn { padding: 0.8rem 1.5rem; background: linear-gradient(135deg,#8a2be2,#00d4ff); border: none; border-radius: 10px; color: #fff; cursor: pointer; margin-top: 1rem; }
+    .btn:hover { transform: scale(1.05); }
+  </style>
+</head>
+<body>
+  <h1>🎉 خوش آمدی <span id="user"></span></h1>
+  <p>شما وارد حساب کاربری خود شدید.</p>
+  <button class="btn" onclick="logout()">🚪 خروج</button>
+
+  <script>
+    const username = localStorage.getItem("username");
+    if(!localStorage.getItem("isLoggedIn")) {
+      window.location.href = "login.html";
+    }
+    document.getElementById("user").textContent = username || "کاربر";
+
+    function logout() {
+      localStorage.removeItem("isLoggedIn");
+      localStorage.removeItem("username");
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>

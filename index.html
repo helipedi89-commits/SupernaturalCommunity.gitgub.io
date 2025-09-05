@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Supernatural - ربات‌های دیسکورد</title>
-  <link rel="icon" type="image/png" href="Server_Icon.png">
+  <link rel="icon" type="image/png" href="gp2.jpg">
 
   <!-- فونت فارسی -->
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700&display=swap" rel="stylesheet">
@@ -25,7 +25,6 @@
       z-index: 100;
       backdrop-filter: blur(10px);
       box-shadow: 0 3px 10px rgba(0,0,0,0.4);
-      transition: all 0.3s;
     }
     .header-center { 
       background: linear-gradient(45deg,#8a2be2,#00d4ff);
@@ -65,40 +64,54 @@
     .hero {
       position: relative;
       background: url("pg1.jpg") no-repeat center center/cover;
-      min-height: 100vh;
-      width: 100%;
+      height: 50vh;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
       color: #fff;
-      padding: 2rem;
     }
     .hero::before {
       content: "";
       position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.6);
-      z-index: 1;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.767);
+      backdrop-filter: blur(2px);
     }
-    .hero * { position: relative; z-index: 2; }
-
-    .hero h2 { font-size: 3rem; margin-bottom: 1rem; font-weight: bold; }
-    .hero p { font-size: 1.2rem; margin-bottom: 2rem; color: #ddd; }
-
-    .btn {
-      padding: 0.9rem 1.6rem;
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      padding: 0 20px;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      font-weight: bold;
+      background: linear-gradient(45deg,#8a2be2,#00d4ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+      color: #eee;
+    }
+    .btn-primary {
+      padding: 1rem 2rem;
       background: linear-gradient(135deg,#8a2be2,#00d4ff);
-      border-radius: 12px;
       color: #fff;
+      border-radius: 14px;
       font-weight: bold;
       text-decoration: none;
-      transition: transform 0.3s, box-shadow 0.3s;
+      transition: all 0.3s;
       display: inline-block;
+      font-size: 1.1rem;
     }
-    .btn:hover { transform: scale(1.07); box-shadow: 0 0 20px rgba(0,212,255,0.7); }
+    .btn-primary:hover {
+      box-shadow: 0 0 25px rgba(0,212,255,0.6);
+      transform: scale(1.08);
+    }
 
     /* ===== Sections ===== */
     section { padding: 4rem 2rem; max-width: 1100px; margin: auto; opacity: 0; transform: translateY(40px); transition: all 0.9s; }
@@ -139,7 +152,7 @@
 
     /* ✅ ریسپانسیو موبایل */
     @media (max-width: 600px) {
-      .hero h2 { font-size: 2.2rem; }
+      .hero h1 { font-size: 2.2rem; }
       .hero p { font-size: 1rem; }
       header { flex-direction: column; gap: 0.5rem; }
       .header-left, .header-right { justify-content: center; }
@@ -158,15 +171,17 @@
       <a href="#bots" class="btn-nav">ربات‌ها</a>
       <a href="#contact" class="btn-nav">تماس</a>
       <a href="order.html" class="btn-nav">سفارش‌های ویژه</a>
-      <div class="cart-icon" onclick="window.location.href='cart.html'"> 🛒 <span id="cartCount" class="cart-count">0</span> </div>
+      <div class="cart-icon"> 🛒 <span id="cartCount" class="cart-count">0</span> </div>
     </nav>
   </header>
 
   <!-- ===== Hero Section ===== -->
   <section class="hero">
-    <h2>ساخت ربات‌های دیسکورد حرفه‌ای</h2>
-    <p>کامیونیتی Supernatural بهترین مکان برای توسعه و ساخت ربات‌های اختصاصی دیسکورد است.</p>
-    <a href="https://discord.gg/YourInviteCode" target="_blank" class="btn">ورود به دیسکورد</a>
+    <div class="hero-content">
+      <h1>ساخت ربات‌های دیسکورد حرفه‌ای</h1>
+      <p>کامیونیتی Supernatural بهترین مکان برای توسعه و ساخت ربات‌های اختصاصی دیسکورد است.</p>
+      <a href="https://discord.gg/YourInviteCode" target="_blank" class="btn-primary">ورود به دیسکورد</a>
+    </div>
   </section>
 
   <!-- ===== About Section ===== -->
@@ -185,21 +200,21 @@
         <h4>Security Bot</h4>
         <p>ربات مدیریت کامل سرور با قابلیت اتوماسیون، فیلتر کلمات و رول‌دهی خودکار.</p>
         <p class="price">400,000 تومان</p>
-        <button class="btn">➕ افزودن به سبد</button>
+        <button class="btn-nav">➕ افزودن به سبد</button>
       </div>
       <div class="bot-card">
         <img src="pg4.jpg" alt="Music Player" class="bot-img">
         <h4>Music Player</h4>
         <p>ربات مخصوص برای پخش آهنگ با کیفیت بالا.</p>
         <p class="price">400,000 تومان</p>
-        <button class="btn">➕ افزودن به سبد</button>
+        <button class="btn-nav">➕ افزودن به سبد</button>
       </div>
       <div class="bot-card">
         <img src="pg5.png" alt="Game Plus" class="bot-img">
         <h4>Game Plus</h4>
         <p>مینی‌گیم‌ها و سرگرمی‌های متنوع برای افزایش تعامل اعضا.</p>
         <p class="price">400,000 تومان</p>
-        <button class="btn">➕ افزودن به سبد</button>
+        <button class="btn-nav">➕ افزودن به سبد</button>
       </div>
     </div>
   </section>
@@ -217,7 +232,7 @@
     <p>برای تماس مستقیم روی دکمه زیر بزنید 👇</p>
     <img src="contact.jpg" alt="Contact" class="contact-img">
     <div style="margin-top:1rem;">
-      <a href="tel:+989945922254" class="btn">📞 تماس با ما</a>
+      <a href="tel:+989945922254" class="btn-primary">📞 تماس با ما</a>
     </div>
   </section>
 
@@ -227,13 +242,62 @@
   </footer>
 
   <script>
-    // ✅ Scroll Animation
+    // ✅ انیمیشن اسکرول
     const sections = document.querySelectorAll("section");
     window.addEventListener("scroll", () => {
       sections.forEach(sec => {
         const rect = sec.getBoundingClientRect();
         if(rect.top < window.innerHeight - 100) sec.classList.add("visible");
       });
+    });
+
+    // ✅ چک لاگین
+    function checkLogin() {
+      const user = JSON.parse(localStorage.getItem("loggedInUser"));
+      if (!user) {
+        alert("⚠️ برای ادامه باید وارد حساب شوید.");
+        window.location.href = "login.html";
+        return false;
+      }
+      return true;
+    }
+
+    // ✅ افزودن به سبد خرید
+    const cartButtons = document.querySelectorAll(".bot-card .btn-nav");
+    cartButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        if (!checkLogin()) return;
+        const card = btn.closest(".bot-card");
+        const item = {
+          name: card.querySelector("h4").innerText,
+          price: card.querySelector(".price").innerText,
+          image: card.querySelector("img").src,
+        };
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cart.push(item);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        document.getElementById("cartCount").innerText = cart.length;
+        alert("✅ " + item.name + " به سبد خرید اضافه شد.");
+      });
+    });
+
+    // ✅ چک روی آیکن سبد خرید
+    document.querySelector(".cart-icon").addEventListener("click", () => {
+      if (!checkLogin()) return;
+      window.location.href = "cart.html";
+    });
+
+    // ✅ چک روی سفارش ویژه
+    document.querySelector("a[href='order.html']").addEventListener("click", (e) => {
+      e.preventDefault();
+      if (!checkLogin()) return;
+      window.location.href = "order.html";
+    });
+
+    // ✅ تعداد سبد خرید بعد از لود
+    document.addEventListener("DOMContentLoaded", () => {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      document.getElementById("cartCount").innerText = cart.length;
     });
   </script>
 </body>
