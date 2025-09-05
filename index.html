@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Supernatural - ربات‌های دیسکورد</title>
+  <title>Supernatural</title>
   <link rel="icon" type="image/png" href="gp2.jpg">
 
   <!-- فونت فارسی -->
@@ -25,6 +25,7 @@
       z-index: 100;
       backdrop-filter: blur(10px);
       box-shadow: 0 3px 10px rgba(0,0,0,0.4);
+      transition: all 0.3s;
     }
     .header-center { 
       background: linear-gradient(45deg,#8a2be2,#00d4ff);
@@ -163,7 +164,7 @@
   <!-- ===== Header ===== -->
   <header>
     <div class="header-left" id="auth-buttons">
-      <a href="login.html" class="btn-nav">Login</a>
+      <!-- اینجا با جاوااسکریپت پر میشه -->
     </div>
     <h1 class="header-center">Supernatural</h1>
     <nav class="header-right">
@@ -171,7 +172,7 @@
       <a href="#bots" class="btn-nav">ربات‌ها</a>
       <a href="#contact" class="btn-nav">تماس</a>
       <a href="order.html" class="btn-nav">سفارش‌های ویژه</a>
-      <div class="cart-icon"> 🛒 <span id="cartCount" class="cart-count">0</span> </div>
+      <div class="cart-icon" onclick="window.location.href='cart.html'"> 🛒 <span id="cartCount" class="cart-count">0</span> </div>
     </nav>
   </header>
 
@@ -242,7 +243,7 @@
   </footer>
 
   <script>
-    // ✅ انیمیشن اسکرول
+    // ✅ Scroll Animation
     const sections = document.querySelectorAll("section");
     window.addEventListener("scroll", () => {
       sections.forEach(sec => {
@@ -251,54 +252,79 @@
       });
     });
 
-    // ✅ چک لاگین
+    // ✅ مدیریت لاگین/لاگ‌اوت
     function checkLogin() {
-      const user = JSON.parse(localStorage.getItem("loggedInUser"));
-      if (!user) {
-        alert("⚠️ برای ادامه باید وارد حساب شوید.");
-        window.location.href = "login.html";
-        return false;
+      const authDiv = document.getElementById("auth-buttons");
+      if (localStorage.getItem("isLoggedIn")) {
+        const username = localStorage.getItem("username") || "کاربر";
+        authDiv.innerHTML = `
+          <span style="margin-left:10px;">👤 ${username}</span>
+          <a href="dashboard.html" class="btn-nav">پنل کاربری</a>
+          <button class="btn-nav" onclick="logout()">خروج</button>
+        `;
+      } else {
+        authDiv.innerHTML = `
+          <a href="login.html" class="btn-nav">Login</a>
+          <a href="register.html" class="btn-nav">Register</a>
+        `;
       }
-      return true;
     }
 
-    // ✅ افزودن به سبد خرید
-    const cartButtons = document.querySelectorAll(".bot-card .btn-nav");
-    cartButtons.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        if (!checkLogin()) return;
-        const card = btn.closest(".bot-card");
-        const item = {
-          name: card.querySelector("h4").innerText,
-          price: card.querySelector(".price").innerText,
-          image: card.querySelector("img").src,
-        };
-        let cart = JSON.parse(localStorage.getItem("cart")) || [];
-        cart.push(item);
-        localStorage.setItem("cart", JSON.stringify(cart));
-        document.getElementById("cartCount").innerText = cart.length;
-        alert("✅ " + item.name + " به سبد خرید اضافه شد.");
-      });
-    });
+    function logout() {
+      localStorage.removeItem("isLoggedIn");
+      localStorage.removeItem("username");
+      checkLogin();
+      alert("✅ با موفقیت خارج شدید.");
+    }
 
-    // ✅ چک روی آیکن سبد خرید
-    document.querySelector(".cart-icon").addEventListener("click", () => {
-      if (!checkLogin()) return;
-      window.location.href = "cart.html";
-    });
-
-    // ✅ چک روی سفارش ویژه
-    document.querySelector("a[href='order.html']").addEventListener("click", (e) => {
-      e.preventDefault();
-      if (!checkLogin()) return;
-      window.location.href = "order.html";
-    });
-
-    // ✅ تعداد سبد خرید بعد از لود
-    document.addEventListener("DOMContentLoaded", () => {
-      let cart = JSON.parse(localStorage.getItem("cart")) || [];
-      document.getElementById("cartCount").innerText = cart.length;
-    });
+    checkLogin();
   </script>
+  <script>
+  // ✅ Scroll Animation
+  const sections = document.querySelectorAll("section");
+  window.addEventListener("scroll", () => {
+    sections.forEach(sec => {
+      const rect = sec.getBoundingClientRect();
+      if(rect.top < window.innerHeight - 100) sec.classList.add("visible");
+    });
+  });
+
+  // ✅ سیستم سبد خرید با چک لاگین
+  const cartButtons = document.querySelectorAll(".bot-card .btn-nav");
+
+  cartButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const user = JSON.parse(localStorage.getItem("loggedInUser"));
+
+      if (!user) {
+        alert("⚠️ لطفاً اول وارد حساب کاربری شوید!");
+        window.location.href = "login.html"; // انتقال به صفحه لاگین
+        return;
+      }
+
+      const card = btn.closest(".bot-card");
+
+      const item = {
+        name: card.querySelector("h4").innerText,
+        price: card.querySelector(".price").innerText,
+        image: card.querySelector("img").src,
+      };
+
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart.push(item);
+      localStorage.setItem("cart", JSON.stringify(cart));
+
+      document.getElementById("cartCount").innerText = cart.length;
+      alert("✅ " + item.name + " به سبد خرید اضافه شد.");
+    });
+  });
+
+  // 🔄 وقتی صفحه لود شد تعداد سبد رو نشون بده
+  document.addEventListener("DOMContentLoaded", () => {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    document.getElementById("cartCount").innerText = cart.length;
+  });
+</script>
+
 </body>
 </html>
