@@ -1,46 +1,96 @@
 <!DOCTYPE html>
 <html lang="fa">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Supernatural</title>
-  <link rel="icon" type="image/png" href="gp2.jpg">
+  <title>Supernatural - ربات‌های دیسکورد</title>
+  <link rel="icon" type="image/png" href="Server_Icon.png">
 
   <!-- فونت فارسی -->
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Vazirmatn', sans-serif; }
-    body { background: #0e0e0e; color: #fff; line-height: 1.7; direction: rtl; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Vazirmatn', sans-serif;
+    }
+
+    body {
+      background: #0e0e0e;
+      color: #fff;
+      line-height: 1.7;
+      direction: rtl;
+      margin: 0;
+      /* حذف فاصله پیشفرض مرورگر */
+      padding: 0;
+
+    }
 
     /* ===== Header ===== */
     header {
-      background: rgba(26,26,26,0.45);
-      padding: 0.6rem 1.2rem;
+      background: transparent;
+      /* پس‌زمینه شفاف */
+      padding: 1rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      position: sticky;
+      position: absolute;
+      /* روی عکس قرار بگیره */
       top: 0;
+      left: 0;
+      width: 100%;
       z-index: 100;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 3px 10px rgba(0,0,0,0.4);
-      transition: all 0.3s;
-      flex-wrap: wrap;
     }
-    .header-center { 
-      background: linear-gradient(45deg,#8a2be2,#00d4ff);
+
+    .header-center {
+      background: linear-gradient(45deg, #8a2be2, #00d4ff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      font-size: 2rem; 
-      font-weight: bold; 
-      text-align: center;
-      flex: 1;
+      font-size: 2rem;
+      font-weight: bold;
     }
-    .header-left, .header-right { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
-    .btn-nav {
+
+    .header-left,
+    .header-right {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .nav-link {
+      background: transparent;
+      color: #fff;
+      font-size: 0.95rem;
+      text-decoration: none;
       padding: 0.6rem 1.2rem;
-      background: linear-gradient(135deg,#8a2be2,#00d4ff);
+      border-radius: 8px;
+      transition: color 0.3s, background 0.3s;
+    }
+
+    .nav-link:hover {
+      color: #00d4ff;
+    }
+
+
+    .sitename-link {
+      background: linear-gradient(45deg, #8a2be2, #00d4ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    .sitename-link:hover {
+      color: linear-gradient(45deg, #8a2be2, #00d4ff);
+    }
+
+
+    .btn-login {
+      padding: 0.6rem 1.2rem;
+      background: linear-gradient(135deg, #8a2be2, #00d4ff);
       color: #fff;
       border: none;
       border-radius: 10px;
@@ -49,10 +99,37 @@
       text-decoration: none;
       transition: transform 0.3s, box-shadow 0.3s;
     }
-    .btn-nav:hover { transform: translateY(-3px); box-shadow: 0 0 15px rgba(138,43,226,0.6); }
+
+    .btn-login:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 15px rgba(0, 212, 255, 0.6);
+    }
+
+    .btn-nav {
+      padding: 0.6rem 1.2rem;
+      background: rgba(0, 0, 0, 0.4);
+      /* نیمه شفاف برای خوانایی */
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .btn-nav:hover {
+      background: rgba(0, 0, 0, 0.7);
+      transform: translateY(-3px);
+    }
 
     /* ===== Cart Icon ===== */
-    .cart-icon { position: relative; cursor: pointer; font-size: 1.2rem; }
+    .cart-icon {
+      position: relative;
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+
     .cart-count {
       position: absolute;
       top: -8px;
@@ -67,71 +144,115 @@
     /* ===== Hero Section ===== */
     .hero {
       position: relative;
-      background: url("pg1.jpg") no-repeat center center/cover;
-      height: 50vh;
+      background: url("https://mcdn.wallpapersafari.com/medium/28/51/i98rzu.jpg") no-repeat center center;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      height: 100vh;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      max-width: 100% !important;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
       color: #fff;
+      padding: 0;
+      margin: 0;
     }
+
     .hero::before {
       content: "";
       position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.767);
-      backdrop-filter: blur(2px);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      /* فیلتر تاریک برای خوانایی متن */
+      z-index: 1;
     }
-    .hero-content {
+
+    .hero * {
       position: relative;
       z-index: 2;
-      max-width: 800px;
-      padding: 0 20px;
     }
-    .hero h1 {
-      font-size: 3rem;
+
+    .hero h2 {
+      font-size: 3.2rem;
       margin-bottom: 1rem;
       font-weight: bold;
-      background: linear-gradient(45deg,#8a2be2,#00d4ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
     }
+
     .hero p {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       margin-bottom: 2rem;
-      color: #eee;
+      color: #ddd;
     }
-    .btn-primary {
-      padding: 1rem 2rem;
-      background: linear-gradient(135deg,#8a2be2,#00d4ff);
+
+    .btn {
+      padding: 0.9rem 1.6rem;
+      background: linear-gradient(135deg, #8a2be2, #00d4ff);
+      border-radius: 12px;
       color: #fff;
-      border-radius: 14px;
       font-weight: bold;
       text-decoration: none;
-      transition: all 0.3s;
+      transition: transform 0.3s, box-shadow 0.3s;
       display: inline-block;
-      font-size: 1.1rem;
     }
-    .btn-primary:hover {
-      box-shadow: 0 0 25px rgba(0,212,255,0.6);
-      transform: scale(1.08);
+
+    .btn:hover {
+      transform: scale(1.07);
+      box-shadow: 0 0 20px rgba(0, 212, 255, 0.7);
     }
 
     /* ===== Sections ===== */
-    section { padding: 4rem 2rem; max-width: 1100px; margin: auto; opacity: 0; transform: translateY(40px); transition: all 0.9s; }
-    section.visible { opacity: 1; transform: translateY(0); }
-    section h3 { text-align: center; margin-bottom: 2rem; background: linear-gradient(90deg,#8a2be2,#00d4ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 2.2rem; }
+    section {
+      padding: 4rem 2rem;
+      max-width: 1100px;
+      margin: auto;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.9s;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    section h3 {
+      text-align: center;
+      margin-bottom: 2rem;
+      background: linear-gradient(90deg, #8a2be2, #00d4ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 2.2rem;
+    }
 
     /* ===== About Section ===== */
-    #about { text-align: center; }
+    #about {
+      text-align: center;
+    }
+
     .about-img {
-      width: 100%; max-width: 400px; border-radius: 15px;
-      margin: 2rem auto; display: block;
-      box-shadow: 0 0 25px rgba(138,43,226,0.7);
+      width: 100%;
+      max-width: 400px;
+      border-radius: 15px;
+      margin: 2rem auto;
+      display: block;
+      box-shadow: 0 0 25px rgba(138, 43, 226, 0.7);
     }
 
     /* ===== Bots Section ===== */
-    .bots { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+    .bots {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
     .bot-card {
       background: #1a1a1a;
       padding: 1.2rem;
@@ -139,77 +260,114 @@
       text-align: center;
       transition: transform 0.4s, box-shadow 0.4s;
       overflow: hidden;
-      border: 1px solid rgba(138,43,226,0.3);
+      border: 1px solid rgba(138, 43, 226, 0.3);
     }
-    .bot-card:hover { transform: translateY(-8px) scale(1.03); box-shadow: 0 0 25px rgba(0,212,255,0.5); }
-    .bot-img { width: 100%; height: 180px; object-fit: cover; border-radius: 12px; margin-bottom: 1rem; }
-    .bot-card h4 { margin: 0.5rem 0; font-weight: bold; }
-    .bot-card p { font-size: 0.9rem; color: #ccc; }
-    .price { margin: 0.5rem 0; color: #00d4ff; font-weight: bold; font-size: 1.2rem; }
+
+    .bot-card:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 0 25px rgba(0, 212, 255, 0.5);
+    }
+
+    .bot-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+    }
+
+    .bot-card h4 {
+      margin: 0.5rem 0;
+      font-weight: bold;
+    }
+
+    .bot-card p {
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+
+    .price {
+      margin: 0.5rem 0;
+      color: #00d4ff;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
 
     /* ===== Contact Section ===== */
-    #contact { text-align: center; }
-    .contact-img { width: 100%; max-width: 600px; border-radius: 15px; margin: 1.5rem auto; display: block; box-shadow: 0 0 20px rgba(0,212,255,0.6); }
+    #contact {
+      text-align: center;
+    }
+
+    .contact-img {
+      width: 100%;
+      max-width: 600px;
+      border-radius: 15px;
+      margin: 1.5rem auto;
+      display: block;
+      box-shadow: 0 0 20px rgba(0, 212, 255, 0.6);
+    }
 
     /* ===== Footer ===== */
-    footer { background: #1a1a1a; text-align: center; padding: 1.5rem; margin-top: 2rem; color: #aaa; border-top: 1px solid rgba(255,255,255,0.1); }
+    footer {
+      background: #1a1a1a;
+      text-align: center;
+      padding: 1.5rem;
+      margin-top: 2rem;
+      color: #aaa;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
 
     /* ✅ ریسپانسیو موبایل */
-    @media (max-width: 768px) {
+    @media (max-width: 600px) {
+      .hero h2 {
+        font-size: 2.2rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
       header {
         flex-direction: column;
-        gap: 0.8rem;
-        padding: 0.8rem;
-        text-align: center;
+        gap: 0.5rem;
       }
-      .header-center {
-        font-size: 1.6rem;
-        margin-bottom: 0.5rem;
+
+      .header-left,
+      .header-right {
+        justify-content: center;
       }
-      .btn-nav {
-        padding: 0.6rem 1rem;
-        font-size: 0.85rem;
-        border-radius: 8px;
-      }
-      .hero { height: auto; padding: 3rem 1rem; }
-      .hero h1 { font-size: 1.8rem; }
-      .hero p { font-size: 1rem; }
-      .bots { grid-template-columns: 1fr; gap: 1rem; }
-      .bot-card { padding: 1rem; }
-      .bot-img { height: 160px; }
-      footer { font-size: 0.85rem; padding: 1rem; }
     }
   </style>
 </head>
+
 <body>
   <!-- ===== Header ===== -->
   <header>
-    <div class="header-left" id="auth-buttons">
-      <!-- اینجا با جاوااسکریپت پر میشه -->
-    </div>
-    <h1 class="header-center">Supernatural</h1>
+    <a href="index.html" class="sitename-link">Supernatural</a>
     <nav class="header-right">
-      <a href="#about" class="btn-nav">درباره ما</a>
-      <a href="#bots" class="btn-nav">ربات‌ها</a>
-      <a href="#contact" class="btn-nav">تماس</a>
-      <a href="order.html" class="btn-nav">سفارش‌های ویژه</a>
-      <div class="cart-icon" onclick="window.location.href='cart.html'"> 🛒 <span id="cartCount" class="cart-count">0</span> </div>
+      <a href="#about" class="nav-link">درباره ما</a>
+      <a href="#bots" class="nav-link">ربات‌ها</a>
+      <a href="#contact" class="nav-link">تماس</a>
+      <a href="order.html" class="nav-link">سفارش‌های ویژه</a>
+      <a href="login.html" class="btn-login">Login</a>
+      <div class="cart-icon" onclick="window.location.href='cart.html'">
+        🛒 <span id="cartCount" class="cart-count">0</span>
+      </div>
     </nav>
   </header>
 
   <!-- ===== Hero Section ===== -->
   <section class="hero">
-    <div class="hero-content">
-      <h1>ساخت ربات‌های دیسکورد حرفه‌ای</h1>
-      <p>کامیونیتی Supernatural بهترین مکان برای توسعه و ساخت ربات‌های اختصاصی دیسکورد است.</p>
-      <a href="https://discord.gg/YourInviteCode" target="_blank" class="btn-primary">ورود به دیسکورد</a>
-    </div>
+    <h2>ساخت ربات‌های دیسکورد حرفه‌ای</h2>
+    <p>کامیونیتی Supernatural بهترین مکان برای توسعه و ساخت ربات‌های اختصاصی دیسکورد است.</p>
+    <a href="https://discord.gg/YourInviteCode" target="_blank" class="btn">ورود به دیسکورد</a>
   </section>
 
   <!-- ===== About Section ===== -->
   <section id="about">
     <h3>درباره ما</h3>
-    <p>ما یک کامیونیتی پرشور از توسعه‌دهندگان دیسکورد هستیم که هدفمان ساخت ربات‌های خلاقانه و کاربردی برای مدیریت و سرگرمی سرورهاست.</p>
+    <p>ما یک کامیونیتی پرشور از توسعه‌دهندگان دیسکورد هستیم که هدفمان ساخت ربات‌های خلاقانه و کاربردی برای مدیریت و
+      سرگرمی سرورهاست.</p>
     <img src="Server_Icon.png" alt="لوگو" class="about-img">
   </section>
 
@@ -243,7 +401,8 @@
 
   <!-- ===== Other Services ===== -->
   <div style="text-align:center; margin:3rem 0;">
-    <a href="bots.html" style="font-size:1.4rem;text-decoration:none;background:linear-gradient(135deg,#8a2be2,#00d4ff);color:#fff;padding:0.8rem 2rem;border-radius:12px;font-weight:bold;display:inline-block;transition:transform 0.3s,box-shadow 0.3s;box-shadow:0 0 15px rgba(0,212,255,0.6);">
+    <a href="bots.html"
+      style="font-size:1.4rem;text-decoration:none;background:linear-gradient(135deg,#8a2be2,#00d4ff);color:#fff;padding:0.8rem 2rem;border-radius:12px;font-weight:bold;display:inline-block;transition:transform 0.3s,box-shadow 0.3s;box-shadow:0 0 15px rgba(0,212,255,0.6);">
       🤖 ربات‌ها و خدمات دیگر
     </a>
   </div>
@@ -266,12 +425,18 @@
   <script>
     // ✅ Scroll Animation
     const sections = document.querySelectorAll("section");
-    window.addEventListener("scroll", () => {
+
+    function revealSections() {
       sections.forEach(sec => {
         const rect = sec.getBoundingClientRect();
-        if(rect.top < window.innerHeight - 100) sec.classList.add("visible");
+        if (rect.top < window.innerHeight - 100) {
+          sec.classList.add("visible");
+        }
       });
-    });
+    }
+
+    window.addEventListener("scroll", revealSections);
+    window.addEventListener("load", revealSections);
 
     // ✅ مدیریت لاگین/لاگ‌اوت
     function checkLogin() {
@@ -330,4 +495,5 @@
     });
   </script>
 </body>
+
 </html>
